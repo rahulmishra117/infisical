@@ -172,6 +172,11 @@ export const DESTINATION_DUPLICATE_CHECK_MAP: Record<SecretSync, DestinationDupl
 
     const wildcardValues = ["*", ""];
 
+    // First check if both configs have the same scope
+    if (existingConfig.scope !== newConfig.scope) {
+      return false;
+    }
+
     if (
       (newConfig.scope as string) === "group"
         ? existingConfig.groupId !== newConfig.groupId
